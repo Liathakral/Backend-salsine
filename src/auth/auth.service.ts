@@ -16,6 +16,26 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
+  async signToken(
+    userId: number,
+    email: string,
+  ): Promise<{ access_token: string }> {
+    const payload = {
+      sub: userId,
+      email,
+    };
+    const secret = process.env.JWT_SECRET;
+
+    const token = await this.jwtService.signAsync(payload, {
+      expiresIn: '15m',
+      secret: secret,
+    });
+
+    return {
+      access_token: token,
+    };
+  }
+
   async signUp(signUpDto: SignUpDto): Promise<{ token: string }> {
     const { name, email, password } = signUpDto;
 
@@ -26,10 +46,10 @@ export class AuthService {
       email,
       password: hashedPassword,
     });
+    // Log the user ID
+    const tokenResponse = await this.signToken(user.id, user.email);
 
-    const token = this.jwtService.sign({ id: user._id });
-
-    return { token };
+    return { token: tokenResponse.access_token };
   }
 
   async login(loginDto: LoginDto): Promise<{ token: string }> {

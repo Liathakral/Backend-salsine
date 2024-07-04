@@ -5,7 +5,7 @@ import { User } from '../../auth/schemas/user.schema';
 @Schema({
   timestamps: true,
 })
-export class Tasks {
+export class task {
   @Prop()
   title: string;
 
@@ -16,4 +16,12 @@ export class Tasks {
   user: User;
 }
 
-export const TasksSchema = SchemaFactory.createForClass(Tasks);
+export const taskSchema = SchemaFactory.createForClass(task);
+// {
+//   "title":"liuuadeh",
+//       "description": "liatdddhhhhakr33al28@gmail.com",
+//       "author": "Liathakral@28",
+//       "price":9,
+//       "category":"Crime"
+
+//   }

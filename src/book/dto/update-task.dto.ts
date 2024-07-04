@@ -1,7 +1,7 @@
 import { IsEmpty, IsOptional, IsString } from 'class-validator';
 import { User } from '../../auth/schemas/user.schema';
 
-export class UpdateTasksDto {
+export class UpdatetaskDto {
   @IsOptional()
   @IsString()
   readonly title: string;

@@ -1,7 +1,7 @@
 import { IsEmpty, IsNotEmpty, IsString } from 'class-validator';
 import { User } from '../../auth/schemas/user.schema';
 
-export class CreateTasksDto {
+export class CreatetaskDto {
   @IsNotEmpty()
   @IsString()
   readonly title: string;
